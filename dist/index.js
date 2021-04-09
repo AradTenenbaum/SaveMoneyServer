@@ -27,12 +27,14 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv = __importStar(require("dotenv"));
 dotenv.config({ path: __dirname.replace('src', '') + '.env' });
 const cors = require('cors');
+const userRoute = require('./routes/users');
 const PORT = parseInt(process.env.PORT, 10) || 5000;
 const DB_CONNECTION = process.env.DB_CONNECTION.toString();
 const app = express_1.default();
 app.use(express_1.default.json());
 app.use(cors());
 // Routes
+app.use('/user', userRoute);
 // Connect DB
 mongoose_1.default.connect(DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
     console.log('DB Connected');
@@ -40,4 +42,3 @@ mongoose_1.default.connect(DB_CONNECTION, { useNewUrlParser: true, useUnifiedTop
         console.log('Server is running');
     });
 });
-// app.get('/', (req: Request, res: Response) => res.send('Hello'));

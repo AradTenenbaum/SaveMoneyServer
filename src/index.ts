@@ -1,9 +1,10 @@
-import express, {Application, Request, Response} from 'express';
+import express, {Application} from 'express';
 import mongoose from 'mongoose';
 import * as dotenv from "dotenv";
 dotenv.config({ path: __dirname.replace('src', '')+'.env' });
 const cors = require('cors');
 
+const userRoute = require('./routes/users');
 
 const PORT: Number = parseInt(<string>process.env.PORT, 10) || 5000;
 const DB_CONNECTION: string = (<string>process.env.DB_CONNECTION).toString();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
+app.use('/user', userRoute);
 
 // Connect DB
 mongoose.connect(DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true},
@@ -24,4 +26,3 @@ mongoose.connect(DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true
         });
     });
 
-// app.get('/', (req: Request, res: Response) => res.send('Hello'));
