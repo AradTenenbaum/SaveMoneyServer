@@ -5,6 +5,7 @@ dotenv.config({ path: __dirname.replace('src', '')+'.env' });
 const cors = require('cors');
 
 const userRoute = require('./routes/users');
+const purchaseRoute = require('./routes/purchases');
 
 const PORT: Number = parseInt(<string>process.env.PORT, 10) || 5000;
 const DB_CONNECTION: string = (<string>process.env.DB_CONNECTION).toString();
@@ -16,6 +17,7 @@ app.use(cors());
 
 // Routes
 app.use('/user', userRoute);
+app.use('/purchase', purchaseRoute);
 
 // Connect DB
 mongoose.connect(DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true},
