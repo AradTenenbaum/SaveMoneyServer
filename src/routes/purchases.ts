@@ -23,7 +23,8 @@ router.post('/add', verify, async (req: Request, res: Response) => {
     const purchase: typeof Purchase = new Purchase({
         name: req.body.name,
         price: req.body.price,
-        userId: req.body.userId
+        userId: req.body.userId,
+        date: req.body.date? req.body.date : Date.now()
     });
     // Save to DB
     try {

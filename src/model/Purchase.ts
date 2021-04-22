@@ -12,6 +12,10 @@ const purchaseSchema: mongoose.Schema = new mongoose.Schema({
     userId: {
         type: String,
         required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now()
     }
 });
 
