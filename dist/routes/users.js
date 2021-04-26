@@ -56,7 +56,7 @@ router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     if (!validPass)
         return res.status(400).send('Password is wrong');
     // Create and assign a login token
-    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+    const token = jwt.sign(Object.assign({}, user), process.env.TOKEN_SECRET);
     res.send({
         user,
         token

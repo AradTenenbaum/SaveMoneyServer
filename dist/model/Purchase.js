@@ -16,6 +16,10 @@ const purchaseSchema = new mongoose_1.default.Schema({
     userId: {
         type: String,
         required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now()
     }
 });
 module.exports = mongoose_1.default.model('Purchase', purchaseSchema);
